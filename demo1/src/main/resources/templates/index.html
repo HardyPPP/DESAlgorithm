@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--use the css file from css-->
+    <!--    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="/css/CustomizedBootStrap.css" type="text/css">
+    <script src="../js/jquery.js"></script>
+    <!--    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <script src="../js/bootstrap.js"></script>
+    <style>
+        .col-center-block {
+            float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <!--apply the base head-->
+</head>
+<body>
+<form th:action="@{/encrypt}" method="post">
+    <!--    <label>-->
+    <!--        <input name="text" placeholder="text">-->
+
+    <!--        </input>-->
+    <!--    </label>-->
+
+    <!--    <input name="key" placeholder="key">-->
+
+    <!--    </input>-->
+    <div class="row mt-4">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm">
+            <div class="form-group ">
+                <label class="control-label">Plain Text</label>
+                <textarea type="text" class="form-control" name="text" rows="16" style="min-width: 90%"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Key</label>
+                <input type="text" class="form-control" name="key">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary"> encrypt </button>
+            </div>
+        </div>
+        <div class="col-sm" th:each="i:${result}">
+            <div class="form-group">
+                <label class="control-label">Encryption Result</label>
+                <textarea type="text" class="form-control" rows="16" style="min-width: 90%" th:text="${i.getOutput()}"></textarea>
+            </div>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+
+</form>
+
+<form th:action="@{/decrypt}" method="post">
+    <!--    <label>-->
+    <!--        <input name="text" placeholder="text">-->
+
+    <!--        </input>-->
+    <!--    </label>-->
+
+    <!--    <input name="key" placeholder="key">-->
+
+    <!--    </input>-->
+    <div class="row mt-4">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm">
+            <div class="form-group">
+                <label class="control-label">Secret Text</label>
+                <textarea type="text" class="form-control" name="textSecret" rows="16" style="min-width: 90%"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Key</label>
+                <input type="text" class="form-control" name="keyD">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary"> decrypt </button>
+            </div>
+        </div>
+        <div class="col-sm" th:each="i:${resultD}">
+            <div class="form-group"  >
+                <label class="control-label">Decryption Result</label>
+                <textarea type="text" class="form-control" rows="16" style="min-width: 90%" th:text="${i.getOutput()}"></textarea>
+            </div>
+
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+
+</form>
+
+
+
+</body>
+</html>
